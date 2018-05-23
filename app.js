@@ -9,6 +9,7 @@ var session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var auth = require('./routes/auth');
 
 var app = express();
 var GoogleStrategy = require('./credential/google.strategy');
@@ -41,6 +42,7 @@ passport.deserializeUser(function (user, done) {
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/auth', auth);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
