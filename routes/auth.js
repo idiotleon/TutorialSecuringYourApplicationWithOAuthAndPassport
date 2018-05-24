@@ -14,4 +14,10 @@ router.route('/google')
             'https://www.googleapis.com/auth/userinfo.email']
     }));
 
+    router.route('/google')
+    .get(passport.authenticate('google', {
+        scope: ['https://www.googleapis.com/auth/userinfo.profile',
+            'https://www.googleapis.com/auth/userinfo.email']
+    }));
+
 module.exports = router;
