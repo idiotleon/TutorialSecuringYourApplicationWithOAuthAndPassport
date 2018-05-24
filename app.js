@@ -10,14 +10,19 @@ var session = require('express-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var auth = require('./routes/auth');
+const authConfig = require('./credential/auth.config');
 
 var app = express();
-var GoogleStrategy = require('./credential/google.strategy');
-passport.use(GoogleStrategy,
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+passport.use(new GoogleStrategy({
+  clientID: authConfig.googleAuth.clientID,
+  clientSecret: authConfig.googleAuth.clientSecret,
+  callbackURL: authConfig.googleAuth.callbackURL
+},
   function (req, accessToken, refreshToken, profile, done) {
     done(null, profile);
-  }
-});
+  })
+);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
