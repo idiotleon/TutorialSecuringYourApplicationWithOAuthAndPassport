@@ -1,6 +1,7 @@
 var express = require('express');
 var passport = require('passport');
 var router = express.Router();
+var debug = require('debug')('app:auth');
 
 router.route('/google/callback')
     .get(passport.authenticate('google', {
@@ -15,10 +16,12 @@ router.route('/google')
     }));
 
 router.route('/twitter/callback')
-    .get(passport.authenticate('twitter', {
-        successRedirect: '/users/',
-        failure: '/error/'
-    }));
+    .get(passport.authenticate('twitter',
+        {
+            successRedirect: '/users/',
+            failureRedirect: '/error/'
+        })
+    );
 
 router.route('/twitter')
     .get(passport.authenticate('twitter'));

@@ -1,24 +1,28 @@
 const passport = require('passport');
 const TwitterStrategy = require('passport-twitter').Strategy;
-const AuthConfig = require('../../credential/auth.config');
+const authConfig = require('../../credential/auth.config');
 
 module.exports = function () {
     passport.use(new TwitterStrategy({
-        consumerKey: AuthConfig.twitterAuth.consumeKey,
-        consumerSecret: AuthConfig.twitterAuth.consumerSecret,
-        callbackURL: AuthConfig.twitterAuth.callbackURL,
+        consumerKey: authConfig.twitterAuth.consumerKey,
+        consumerSecret: authConfig.twitterAuth.consumerSecret,
+        callbackURL: authConfig.twitterAuth.callbackURL,
         passReqToCallback: true
     },
-        function (req, token, tokenSecret, profile, done) {
+        function (err, req, token, tokenSecret, profile, done) {
             var user = {};
 
-            user.image = profile._json.image.url;
+            user.image = profile._json.profile_image_url;
             user.displayName = profile.displayName;
 
             user.twitter = {};
             user.twitter.id = profile.id;
-            user.twitter.token = accessToken;
+            user.twitter.token = token;
 
-            done(null, user);
+            if (err) {
+                done(err, user);
+            } else {
+                done(null, user);
+            }
         }));
 }
