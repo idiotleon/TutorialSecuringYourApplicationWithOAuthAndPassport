@@ -6,13 +6,14 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var session = require('express-session');
+var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var auth = require('./routes/auth');
 
 var app = express();
-require('./config/strategies/google.strategy');
+var db = mongoose.connect('mongodb://localhost/socialAgg');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
