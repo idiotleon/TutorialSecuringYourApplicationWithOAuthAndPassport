@@ -30,6 +30,10 @@
             I have <%=user.facebook.friends_count%> friends
     </div>
     <div>
+        Last Tweet: <%=user.twitter.lastPost%>
+    </div>
+
+    <div>
         <ul class="social list-inline">
             <li>
                 <a href="/auth/google" class="<%if(user.google){%>googleplus<%}%">

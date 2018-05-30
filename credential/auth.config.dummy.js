@@ -8,5 +8,10 @@ module.exports = {
         consumeKey: '',
         consumerSecret: '',
         callbackURL: ''
+    },
+    'facebook': {
+        clientID: '',
+        clientSecret: '',
+        callbackURL: ''
     }
 }
