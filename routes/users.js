@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var authConfig = require('../credential/auth.config');
+var authConfig = require('../config/credential/auth.config');
 var facebook = require('../services/facebook')
   (authConfig.facebookAuth.clientID, authConfig.facebookAuth.clientSecret);
 var twitter = require('../services/twitter')

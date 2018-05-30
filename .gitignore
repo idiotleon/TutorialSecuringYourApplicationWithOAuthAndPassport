@@ -1,2 +1,2 @@
 node_modules/
-credential/auth.config.js
+config/credential/auth.config.js

@@ -1,6 +1,6 @@
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
-const authConfig = require('../../credential/auth.config');
+const authConfig = require('../credential/auth.config');
 const User = require('../../models/userModel');
 
 module.exports = function () {
